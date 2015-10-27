@@ -1,2 +1,4 @@
 hsperfdata_*/
 .project
+openinfra/conf/managed-schema
+openinfra/**
