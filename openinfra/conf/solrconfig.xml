@@ -150,10 +150,13 @@
        modification REST API calls will be allowed; otherwise, error responses will be
        sent back for these requests. 
   -->
+  <schemaFactory class="ClassicIndexSchemaFactory"/>
+  <!--
   <schemaFactory class="ManagedIndexSchemaFactory">
     <bool name="mutable">true</bool>
     <str name="managedSchemaResourceName">managed-schema</str>
   </schemaFactory>
+  -->
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Index Config - These settings control low-level behavior of indexing
@@ -790,7 +793,7 @@
     <lst name="defaults">
       <str name="echoParams">explicit</str>
       <int name="rows">10</int>
-      <!-- <str name="df">text</str> -->
+      <str name="df">default_search</str>
     </lst>
     <!-- In addition to defaults, "appends" params can be specified
          to identify values which should be appended to the list of
@@ -1386,6 +1389,7 @@
         <str>yyyy-MM-dd</str>
       </arr>
     </processor>
+    <!-- 
     <processor class="solr.AddSchemaFieldsUpdateProcessorFactory">
       <str name="defaultFieldType">strings</str>
       <lst name="typeMapping">
@@ -1406,6 +1410,7 @@
         <str name="fieldType">tdoubles</str>
       </lst>
     </processor>
+     -->
     <processor class="solr.RunUpdateProcessorFactory"/>
   </updateRequestProcessorChain>
 
