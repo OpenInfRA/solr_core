@@ -116,7 +116,24 @@
    <field name="projectid" type="uuid" indexed="true" stored="true" required="true"/>
    <field name="default_search" type="text_general" indexed="true" stored="true" multiValued="true"/>
 
+   <!-- Theses dynamic fields will contain all attribute types separated to their data types. -->
+   <dynamicField name="*_boolean" type="boolean" indexed="true" stored="true" multiValued="true"/>
+   <!-- DO NOT CHANGE THE SUFFIX date !!! Changes will break the search for dates -->
+   <dynamicField name="*_date" type="date" indexed="true" stored="true" multiValued="true"/>
+   <!-- DO NOT CHANGE THE SUFFIX date !!! Changes will break the search for dates -->
+   <dynamicField name="*_file" type="uuid" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_geometry(Geometry)" type="location" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_geometry(GeometryZ)" type="location" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_integer" type="tint" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_image" type="uuid" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_numeric" type="tdouble" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_text" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_url" type="string" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_varchar" type="text_general" indexed="true" stored="true" multiValued="true"/>
    <dynamicField name="*" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   
+   <!-- Copy everything into a default search field. This field is necessary to
+     search for values without specifying a field type. -->
    <copyField source="*" dest="default_search"/>
    
    <defaultSearchField>default_search</defaultSearchField>
