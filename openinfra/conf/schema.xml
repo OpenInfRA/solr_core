@@ -93,13 +93,15 @@
    <!-- If you remove this field, you must _also_ disable the update log in solrconfig.xml
       or Solr won't start. _version_ and update log are required for SolrCloud
    --> 
+   <!-- 
    <field name="_version_" type="long" indexed="true" stored="true"/>
-   
+    -->
    <!-- points to the root document of a block of nested documents. Required for nested
       document support, may be removed otherwise
    -->
+   <!-- 
    <field name="_root_" type="string" indexed="true" stored="false"/>
-
+ 	-->
    <!-- Only remove the "id" field if you have a very good reason to. While not strictly
      required, it is highly recommended. A <uniqueKey> is present in almost all Solr 
      installations. See the <uniqueKey> declaration below where <uniqueKey> is set to "id".
@@ -115,6 +117,7 @@
    <field name="topiccharacteristicid" type="uuid" indexed="true" stored="true" required="true"/>
    <field name="projectid" type="uuid" indexed="true" stored="true" required="true"/>
    <field name="default_search" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <field name="lookup_field" type="text_general" indexed="true" stored="true" multiValued="true"/>
 
    <!-- Theses dynamic fields will contain all attribute types separated to their data types. -->
    <dynamicField name="*_boolean" type="boolean" indexed="true" stored="true" multiValued="true"/>
@@ -131,10 +134,6 @@
    <dynamicField name="*_url" type="string" indexed="true" stored="true" multiValued="true"/>
    <dynamicField name="*_varchar" type="text_general" indexed="true" stored="true" multiValued="true"/>
    <dynamicField name="*" type="text_general" indexed="true" stored="true" multiValued="true"/>
-   
-   <!-- Copy everything into a default search field. This field is necessary to
-     search for values without specifying a field type. -->
-   <copyField source="*" dest="default_search"/>
    
    <defaultSearchField>default_search</defaultSearchField>
    

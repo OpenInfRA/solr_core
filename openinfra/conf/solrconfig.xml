@@ -321,11 +321,12 @@
                 indexing, this requires 8 bytes (long) * numVersionBuckets
                 of heap space per Solr core.
     -->
+    <!-- 
     <updateLog>
       <str name="dir">${solr.ulog.dir:}</str>
       <int name="numVersionBuckets">${solr.ulog.numVersionBuckets:65536}</int>
     </updateLog>
-
+	 -->
     <!-- AutoCommit
 
          Perform a hard commit automatically under certain conditions.
@@ -1032,6 +1033,34 @@
        
      -->
 
+  <!-- Suggestion / Loop 
+       
+       This spell check component will return a list of suggestions based on
+       incomplete user input.
+       
+       https://cwiki.apache.org/confluence/display/solr/Suggester
+  -->
+  <searchComponent name="suggest" class="solr.SuggestComponent">
+    <lst name="suggester">
+      <str name="name">OpenInfRASuggester</str>
+      <str name="lookupImpl">AnalyzingLookupFactory</str>
+      <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+      <str name="field">lookup_field</str>
+      <str name="suggestAnalyzerFieldType">text_general</str>
+      <str name="buildOnCommit">true</str>
+    </lst>
+  </searchComponent>
+  
+  <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
+    <lst name="defaults">
+      <str name="suggest">true</str>
+      <str name="suggest.count">10</str>
+      <str name="suggest.dictionary">OpenInfRASuggester</str>
+    </lst>
+    <arr name="components">
+      <str>suggest</str>
+    </arr>
+  </requestHandler>
   <!-- Spell Check
 
        The spell check component can return a list of alternative spelling
