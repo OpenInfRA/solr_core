@@ -794,7 +794,7 @@
     <lst name="defaults">
       <str name="echoParams">explicit</str>
       <int name="rows">10</int>
-      <str name="df">default_search</str>
+      <str name="df">_defaultsearch_</str>
     </lst>
     <!-- In addition to defaults, "appends" params can be specified
          to identify values which should be appended to the list of

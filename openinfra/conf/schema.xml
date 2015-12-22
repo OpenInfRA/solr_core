@@ -112,13 +112,16 @@
      tokens
    -->   
    
-   <!--  OpenInfRA configuration start -->
+   <!-- OpenInfRA configuration start -->
+   <!-- default fields for indexing -->
    <field name="id" type="uuid" indexed="true" stored="true" required="true"/>
-   <field name="topiccharacteristicid" type="uuid" indexed="true" stored="true" required="true"/>
-   <field name="projectid" type="uuid" indexed="true" stored="true" required="true"/>
-   <field name="default_search" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <field name="_defaultsearch_" type="text_general" indexed="true" stored="true" multiValued="true"/>
    <field name="lookup_field" type="text_general" indexed="true" stored="true" multiValued="true"/>
-
+   
+   <!-- fields for database indexing -->
+   <field name="_topiccharacteristicid_" type="uuid" indexed="true" stored="true"/>
+   <field name="_projectid_" type="uuid" indexed="true" stored="true"/>
+   
    <!-- Theses dynamic fields will contain all attribute types separated to their data types. -->
    <dynamicField name="*_boolean" type="boolean" indexed="true" stored="true" multiValued="true"/>
    <!-- DO NOT CHANGE THE SUFFIX date !!! Changes will break the search for dates -->
@@ -135,7 +138,11 @@
    <dynamicField name="*_varchar" type="text_general" indexed="true" stored="true" multiValued="true"/>
    <dynamicField name="*" type="text_general" indexed="true" stored="true" multiValued="true"/>
    
-   <defaultSearchField>default_search</defaultSearchField>
+   <defaultSearchField>_defaultsearch_</defaultSearchField>
+   
+   <!-- fields for file indexing -->
+   <field name="_filehash_" type="string" indexed="false" stored="true"/>
+   <field name="_documenttype_" type="string" indexed="false" stored="true"/>
    
    <updateRequestProcessorChain name="uuid">
       <processor class="solr.UUIDUpdateProcessorFactory">
@@ -143,7 +150,7 @@
       </processor>
       <processor class="solr.RunUpdateProcessorFactory" />
    </updateRequestProcessorChain>
-   <!--  OpenInfRA configuration end -->
+   <!-- OpenInfRA configuration end -->
    
    <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 
