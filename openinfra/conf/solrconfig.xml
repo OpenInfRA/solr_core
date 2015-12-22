@@ -1044,7 +1044,7 @@
     <lst name="suggester">
       <str name="name">OpenInfRASuggester</str>
       <str name="lookupImpl">AnalyzingLookupFactory</str>
-      <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+      <str name="dictionaryImpl">HighFrequencyDictionaryFactory</str>
       <str name="field">lookup_field</str>
       <str name="suggestAnalyzerFieldType">text_general</str>
       <str name="buildOnCommit">true</str>
